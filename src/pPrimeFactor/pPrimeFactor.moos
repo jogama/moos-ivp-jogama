@@ -1,0 +1,34 @@
+ServerHost = localhost
+ServerPort = 9000
+
+//------------------------------------------
+// Antler configuration  block
+ProcessConfig = ANTLER
+{
+  MSBetweenLaunches = 200
+
+  Run = MOOSDB          @ NewConsole = false, ExtraProcessParams=db
+  Run = pPrimeFactor    @ NewConsole = false
+	Run = uXMS             @ NewConsole = true
+//  Run = uTimerScript    @ NewConsole = false
+}
+
+//------------------------------------------------
+// pPrimeFactor config block
+
+ProcessConfig = pPrimeFactor
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+
+//------------------------------------------
+// uMS config block
+
+ProcessConfig = uXMS 
+{                                                               
+  AppTick   = 4                                                 
+  CommsTick = 4                                                 
+
+	Var = NUM_VALUE, PRIME_RESULT
+}	

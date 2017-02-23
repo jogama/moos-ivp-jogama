@@ -1,0 +1,182 @@
+//--------    FILE: alpha.bhv   -------------
+
+initialize   DEPLOY = false
+initialize   RETURN = false
+initialize   LOITER_REGION = west
+initialize   GPS_CALIBRATED = true
+//----------------------------------------------
+Behavior=BHV_Waypoint
+{
+  name       = waypt_return
+  pwt        = 100
+  condition  = RETURN = true
+  condition  = DEPLOY = true
+  perpetual  = true
+  endflag    = RETURN = false
+  endflag    = DEPLOY = false
+  endflag    = MISSION = complete
+
+	updates    = RETURN_POINT_UPDATES
+	
+           speed = 2.0
+  capture_radius = 2.0
+     slip_radius = 8.0
+          points = 0,0
+}
+
+//----------------------------------------------
+Behavior=BHV_ConstantSpeed
+{
+  name       = const_speed
+  pwt        = 200
+  condition  = SPD=true
+  condition  = DEPLOY = true
+  perpetual  = true
+  updates    = SPEED_UPDATE
+  endflag    = SPD = false
+
+     speed = 0.5
+		 duration = 10
+		 duration_reset = CONST_SPD_RESET=true
+	
+}
+
+	// uPokeDB alpha.moos SPEED_UPDATE=speed=0.7#duration=20
+	// uPokeDB alpha.moos RETURN_UPDATE=slip_radius=7
+
+Behavior = BHV_Loiter
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name         = loiter_west
+	condition = LOITER_REGION = west
+	condition = RETURN = false
+  condition = DEPLOY = true
+	endflag   = LOITER_REGION = east
+	duration_reset = LOITER_REGION = east
+	duration     = 150
+	duration_idle_decay = false
+	perpetual = true
+	
+  // Parameters specific to this behavior
+  // ------------------------------------
+  acquire_dist = 10               // default
+  capture_radius = 3                // default  
+  center_activate = false            // default
+  clockwise = false
+  slip_radius = 15               // default
+  speed = 2.5                // default
+  spiral_factor = -2               // default
+	
+  polygon = radial:: x=100,y=-75,radius=30,pts=8  // example
+  post_suffix = HENRY                             // example
+}
+
+Behavior = BHV_Loiter
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name      = loiter_east
+	condition = LOITER_REGION = east
+	condition = RETURN = false
+  condition = DEPLOY = true
+	endflag   = LOITER_REGION = west
+	duration_reset = LOITER_REGION = west
+  updates      = LOITER_EAST_UPDATES        // example
+	duration     = 150
+	duration_idle_decay = false
+	perpetual = true
+
+  // Parameters specific to this behavior
+  // ------------------------------------
+  acquire_dist = 10               // default
+  capture_radius = 3                // default  
+  center_activate = false            // default
+  clockwise = false
+  slip_radius = 15               // default
+  speed = 2.5                // default
+  spiral_factor = -2               // default
+	
+  polygon = radial:: x=160,y=-50,radius=20,pts=8  
+}
+Behavior = BHV_ConstantDepth
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name         = const_dep_survey_east   // example
+  pwt          = 100                // default
+  condition    = LOITER_REGION = east
+  perpetual = true
+  // Parameters specific to this behavior
+  // ------------------------------------
+  basewidth = 100          // default
+  depth = 10            
+}
+	
+Behavior = BHV_ConstantDepth
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name         = const_dep_survey_west   // example
+  pwt          = 100                // default
+  condition    = LOITER_REGION = west
+	perpetual = true
+  
+  // Parameters specific to this behavior
+  // ------------------------------------
+  basewidth = 100          // default
+  depth = 30            
+}
+Behavior = BHV_ConstantDepth
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name         = surface_for_gps
+  pwt          = 100                // default
+	perpetual = true
+	condition = GPS_CALIBRATED = false
+  
+  // Parameters specific to this behavior
+  // ------------------------------------
+  basewidth = 100          // default
+  depth = 0
+}
+Behavior = BHV_Timer
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name         = time_to_next_calibration        
+	condition    = GPS_CALIBRATED = true
+  duration     = 200
+  endflag      = GPS_CALIBRATED = false
+	duration_reset = GPS_CALIBRATED=false
+	perpetual    = true
+}
+Behavior = BHV_Timer
+{
+  // General Behavior Parameters
+  // ---------------------------
+  name         = time_for_calibration  
+  condition    = GPS_CALIBRATED=false
+  duration     = 60
+  endflag      = GPS_CALIBRATED = true
+	duration_reset = GPS_CALIBRATED=true
+	perpetual = true
+}
+Behavior = BHV_StationKeep
+{
+ // General Behavior Parameters
+ // ---------------------------
+ name         = station-keep          // example
+ pwt          = 1000000000000000
+ condition    = GPS_CALIBRATED = false
+ 
+ // Parameters specific to this behavior
+ // ------------------------------------
+ center_activate = true
+ hibernation_radius = -1      // default
+ perpetual = true
+
+ inner_radius = 15
+ outer_radius = 25
+}
