@@ -24,7 +24,11 @@ ProcessConfig = ANTLER
   MSBetweenLaunches = 200
 
   Run = MOOSDB          @ NewConsole = false, ExtraProcessParams=db
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
   Run = pLogger         @ NewConsole = false
+=======
+//  Run = pLogger         @ NewConsole = false
+>>>>>>> initial commmit
   Run = uSimMarine	    @ NewConsole = false
   Run = pMarinePID      @ NewConsole = false
   Run = pHelmIvP        @ NewConsole = false
@@ -136,6 +140,12 @@ ProcessConfig = pHelmIvP
   behaviors  = alpha.bhv
   domain     = course:0:359:360
   domain     = speed:0:4:41
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
+=======
+
+	verbose = true
+
+>>>>>>> initial commmit
 }
 
 //------------------------------------------
@@ -209,6 +219,24 @@ ProcessConfig = pMarineViewer
   //left_context[survey-point] = MOOS_MANUAL_OVERRIDE=false
   //left_context[survey-point] = RETURN=false
 
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
+=======
+	left_context[assignment1]  = VIEW_POINT = x =$(XPOS), y=$(YPOS),label=return_point
+	left_context[assignment1]  = RETURN_POINT_UPDATES = points=$(XPOS),$(YPOS)
+
+	left_context[assignment2]  = RETURN = true
+	left_context[assignment2]  = VIEW_POINT = x =$(XPOS), y=$(YPOS),label=return_point
+	left_context[assignment2]  = RETURN_POINT_UPDATES = points=$(XPOS),$(YPOS)	
+
+	left_context[view_point] = VIEW_POINT = x =$(XPOS), y=$(YPOS),label=hello!
+  left_context[view_poly]  = VIEW_POLYGON = format=radial,x=$(XPOS),y=$(YPOS), radius=10, pts=8, edge_size=1,label=mypoly
+	
+	left_context[view_both]  = VIEW_POINT = x =$(XPOS), y=$(YPOS),label=hello!
+	left_context[view_both]  = VIEW_POLYGON = format=radial,x=$(XPOS),y=$(YPOS), radius=10, pts=8, edge_size=1,label=polygo!
+
+	
+
+>>>>>>> initial commmit
   right_context[return] = DEPLOY=true
   right_context[return] = MOOS_MANUAL_OVERRIDE=false
   right_context[return] = RETURN=false
@@ -225,6 +253,10 @@ ProcessConfig = pMarineViewer
   scope  = VIEW_POLYGON
   scope  = MVIEWER_LCLICK
   scope  = MVIEWER_RCLICK
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
+=======
+	scope  = RETURN_POINT_UPDATES
+>>>>>>> initial commmit
 
   button_one = DEPLOY # DEPLOY=true
   button_one = MOOS_MANUAL_OVERRIDE=false # RETURN=false

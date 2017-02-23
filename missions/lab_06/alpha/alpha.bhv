@@ -2,7 +2,13 @@
 
 initialize   DEPLOY = false
 initialize   RETURN = false
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
 
+=======
+initialize   RETURN_X = 0
+initialize   RETURN_Y = -20
+	
+>>>>>>> initial commmit
 //----------------------------------------------
 Behavior = BHV_Waypoint
 { 
@@ -11,9 +17,15 @@ Behavior = BHV_Waypoint
   condition = RETURN = false
   condition = DEPLOY = true
   endflag   = RETURN = true
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
 
   updates    = WPT_UPDATE
   perpetual  = true
+=======
+  updates    = WPT_UPDATE
+  perpetual  = true
+
+>>>>>>> initial commmit
 //  templating = clone
 
                 lead = 8
@@ -48,11 +60,19 @@ Behavior=BHV_Waypoint
   condition  = RETURN = true
   condition  = DEPLOY = true
   perpetual  = true
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
   updates    = RETURN_UPDATE
+=======
+>>>>>>> initial commmit
   endflag    = RETURN = false
   endflag    = DEPLOY = false
   endflag    = MISSION = complete
 
+<<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
+=======
+	updates    = RETURN_POINT_UPDATES
+	
+>>>>>>> initial commmit
            speed = 2.0
   capture_radius = 2.0
      slip_radius = 8.0
