@@ -1,3 +1,5 @@
+// MOOS configuration file: J. Garcia-Mallen
+	
 ServerHost = localhost
 ServerPort = 9000
 
