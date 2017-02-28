@@ -41,13 +41,10 @@ bool PrimeFactorTester::OnNewMail(MOOSMSG_LIST &NewMail)
     string key = msg.GetKey();
 
     if(key == "PRIME_RESULT"){
-      cout<< "TESTER GOT MAIL!\n";
-      // is it bad practice to (a) declare things here and
-      // (b) do calculations in OnNewMail?
       string sval = msg.GetString();
       string factorization_validity = GenValidityString(sval);
-      cout << factorization_validity << endl;
       m_Comms.Notify("PRIME_RESULT_VALID", factorization_validity);
+
     }
   }
 	
@@ -118,14 +115,12 @@ void PrimeFactorTester::RegisterVariables()
 }
 
 string PrimeFactorTester::GenValidityString(string& message)
-{
+{ 
   // message takes this form:
-  //   PRIME_RESULT = "orig=30030,received=34,calculated=33,solve_time=2.03, primes=2:3:5:7:11:13,username=jane"
+  //   message = "orig=30030,received=34,calculated=33,solve_time=2.03, primes=2:3:5:7:11:13,username=jane"
 
   // split the string
-  string quotation = parseString(message,'\"')[1];
-  vector<string> split_string = parseString(quotation,",");
-
+  vector<string> split_string = parseString(message,",");
   string soriginal = parseString(split_string[0], '=')[1];
   int original = stoi(soriginal);
 
@@ -134,7 +129,7 @@ string PrimeFactorTester::GenValidityString(string& message)
   for(int i=0; i<sfactors.size(); i++){
     factors[i] = stoi(sfactors[i]);
   }
-    
+  
   int multiplied = 1;
   for(int factor : factors){
     multiplied *= factor;
@@ -145,13 +140,12 @@ string PrimeFactorTester::GenValidityString(string& message)
   if(multiplied == original){
     valid = "true";
   }else{
-
     valid = "false";
   }
-  
+
   // append the validity to the old string
   stringstream stream;
-  stream << "PRIME_RESULT = \"" << quotation << ",valid=" << valid;
+  stream << message << ",valid=" << valid;
   return stream.str();
 }
 

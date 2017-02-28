@@ -54,7 +54,7 @@ void FactoredInput::do_work(){
 string FactoredInput::get_result(double end_time, int order_processed){
   stringstream stream;
 
-  stream << "PRIME_RESULT = \"orig=" << original << ","
+  stream << "orig=" << original << ","
 	 << "received=" << order_received << ","
 	 << "calculated=" << order_processed << ","
 	 << "solve_time=" << end_time - start_time << ","
@@ -66,7 +66,7 @@ string FactoredInput::get_result(double end_time, int order_processed){
     stream << prime << ":";
   }
 
-  stream << lastfactor << "," << username << "\"";  
+  stream << lastfactor << "," << username;  
   
   return stream.str();  
 }
