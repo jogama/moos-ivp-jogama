@@ -20,10 +20,10 @@ void showSynopsis()
 {
   blk("SYNOPSIS:                                                       ");
   blk("------------------------------------                            ");
-  blk("  The pPrimeFactor application is used for               ");
-  blk("                                                                ");
-  blk("                                                                ");
-  blk("                                                                ");
+  blk("  The pPrimeFactor application is used to factor numbers into   ");
+  blk("  their prime factorization. Inputs are calculated in parallel, ");
+  blk("  such that when a small input follows a large input, the       ");
+  blk("  factorization of the small number is returned first.          ");
   blk("                                                                ");
 }
 
@@ -94,6 +94,7 @@ void showInterfaceAndExit()
   blk("                                                                ");
   blk("SUBSCRIPTIONS:                                                  ");
   blk("------------------------------------                            ");
+  blk("  NUM_VALUE    = string with number to factorize                ");
   blk("  NODE_MESSAGE = src_node=alpha,dest_node=bravo,var_name=FOO,   ");
   blk("                 string_val=BAR                                 ");
   blk("                                                                ");
@@ -101,6 +102,10 @@ void showInterfaceAndExit()
   blk("------------------------------------                            ");
   blk("  Publications are determined by the node message content.      ");
   blk("                                                                ");
+  blk("  PRIME_RESULT = formatted string with the original number,     ");
+  blk("                 order received, order calculated, time to      ");
+  blk("                 solve, the list of pimes, and the author's     ");
+  blk("                 username.                                      ");
   exit(0);
 }
 
