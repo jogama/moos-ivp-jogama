@@ -24,11 +24,15 @@ ProcessConfig = ANTLER
   MSBetweenLaunches = 200
 
   Run = MOOSDB          @ NewConsole = false, ExtraProcessParams=db
+<<<<<<< HEAD
 <<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
   Run = pLogger         @ NewConsole = false
 =======
 //  Run = pLogger         @ NewConsole = false
 >>>>>>> initial commmit
+=======
+//  Run = pLogger         @ NewConsole = false
+>>>>>>> refs/remotes/github/master
   Run = uSimMarine	    @ NewConsole = false
   Run = pMarinePID      @ NewConsole = false
   Run = pHelmIvP        @ NewConsole = false
@@ -140,12 +144,18 @@ ProcessConfig = pHelmIvP
   behaviors  = alpha.bhv
   domain     = course:0:359:360
   domain     = speed:0:4:41
+<<<<<<< HEAD
 <<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
 =======
 
 	verbose = true
 
 >>>>>>> initial commmit
+=======
+
+	verbose = true
+
+>>>>>>> refs/remotes/github/master
 }
 
 //------------------------------------------
@@ -219,8 +229,11 @@ ProcessConfig = pMarineViewer
   //left_context[survey-point] = MOOS_MANUAL_OVERRIDE=false
   //left_context[survey-point] = RETURN=false
 
+<<<<<<< HEAD
 <<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
 =======
+=======
+>>>>>>> refs/remotes/github/master
 	left_context[assignment1]  = VIEW_POINT = x =$(XPOS), y=$(YPOS),label=return_point
 	left_context[assignment1]  = RETURN_POINT_UPDATES = points=$(XPOS),$(YPOS)
 
@@ -236,7 +249,10 @@ ProcessConfig = pMarineViewer
 
 	
 
+<<<<<<< HEAD
 >>>>>>> initial commmit
+=======
+>>>>>>> refs/remotes/github/master
   right_context[return] = DEPLOY=true
   right_context[return] = MOOS_MANUAL_OVERRIDE=false
   right_context[return] = RETURN=false
@@ -253,10 +269,14 @@ ProcessConfig = pMarineViewer
   scope  = VIEW_POLYGON
   scope  = MVIEWER_LCLICK
   scope  = MVIEWER_RCLICK
+<<<<<<< HEAD
 <<<<<<< feb40713cdcc1f37e3508760fa1345776f1005f8
 =======
 	scope  = RETURN_POINT_UPDATES
 >>>>>>> initial commmit
+=======
+	scope  = RETURN_POINT_UPDATES
+>>>>>>> refs/remotes/github/master
 
   button_one = DEPLOY # DEPLOY=true
   button_one = MOOS_MANUAL_OVERRIDE=false # RETURN=false
